@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OUT THERE SOMEWHERE - Shoegaze Dream Pop</title>
+
+  <style>
+    :root {
+      --primary-purple: #6B46C1;
+      --deep-purple: #4C1D95;
+      --teal: #14B8A6;
+      --soft-teal: #5EEAD4;
+      --dark-bg: #0F172A;
+      --light-text: #F1F5F9;
+      --glass-bg: rgba(255, 255, 255, 0.05);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: linear-gradient(135deg, var(--dark-bg) 0%, var(--deep-purple) 100%);
+      color: var(--light-text);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* ----------  FIXED NAV (NOW VISIBLE)  ---------- */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: var(--light-text);
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--teal);
+    }
+
+    /* ----------  SECTIONS  ---------- */
+    section {
+      min-height: 100vh;
+      padding: 5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* ----------  HOME  ---------- */
+    #home {
+      background: radial-gradient(circle at center, var(--deep-purple) 0%, var(--dark-bg) 70%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cosmic-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0.3;
+      background:
+        radial-gradient(circle at 20% 50%, var(--primary-purple) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, var(--teal) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, var(--soft-teal) 0%, transparent 50%);
+      animation: float 20s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -30px) scale(1.1); }
+      66% { transform: translate(-20px, 20px) scale(0.9); }
+    }
+
+    .hero-content {
+      text-align: center;
+      z-index: 10;
+      position: relative;
+    }
+
+    .band-logo {
+      font-size: 4rem;
+      font-weight: bold;
+      letter-spacing: 0.3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, var(--teal), var(--soft-teal));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { filter: drop-shadow(0 0 20px var(--teal)); }
+      to { filter: drop-shadow(0 0 30px var(--soft-teal)); }
+    }
+
+    .tagline {
+      font-size: 1.5rem;
+      opacity: 0.8;
+      font-style: italic;
+    }
+
+    /* ----------  MUSIC  ---------- */
+    #music { background: var(--dark-bg); }
+    .music-player {
+      width: 100%;
+      max-width: 600px;
+      margin: 2rem auto;
+    }
+
+    /* ----------  VIDEOS  ---------- */
+    #videos {
+      background: linear-gradient(180deg, var(--dark-bg) 0%, var(--deep-purple) 100%);
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .video-item {
+      background: var(--glass-bg);
+      padding: 1rem;
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+    }
+
+    /* ----------  ABOUT  ---------- */
+    #about { background: var(--dark-bg); }
+    .bio {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      opacity: 0.9;
+    }
+
+    /* ----------  GALLERY  ---------- */
+    #gallery {
+      background: linear-gradient(180deg, var(--deep-purple) 0%, var(--dark-bg) 100%);
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .gallery-item {
+      aspect-ratio: 1;
+      background: var(--glass-bg);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover { transform: scale(1.05); }
+
+    /* ----------  CONTACT  ---------- */
+    #contact {
+      background: var(--dark-bg);
+      text-align: center;
+    }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .social-links a {
+      color: var(--light-text);
+      font-size: 1.5rem;
+      transition: color 0.3s ease;
+    }
+    .social-links a:hover { color: var(--teal); }
+
+    h2 {
+      font-size: 3rem;
+      margin-bottom: 2rem;
+      background: linear-gradient(45deg, var(--teal), var(--soft-teal));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* ----------  MOBILE  ---------- */
+    @media (max-width: 768px) {
+      .band-logo { font-size: 2.5rem; }
+      nav ul { gap: 1rem; }
+      nav a { font-size: 0.9rem; }
+      h2 { font-size: 2rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!--  NAVIGATION (VISIBLE)  -->
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#music">Music</a></li>
+      <li><a href="#videos">Videos</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!--  HOME  -->
+  <section id="home">
+    <div class="cosmic-bg"></div>
+    <div class="hero-content">
+      <h1 class="band-logo">OUT THERE SOMEWHERE</h1>
+      <p class="tagline">Cosmic soundscapes from the dream-pop abyss</p>
+    </div>
+  </section>
+
+  <!--  MUSIC  -->
+  <section id="music">
+    <div class="container">
+      <h2>Music</h2>
+      <div class="music-player">
+        <iframe style="border-radius:12px"
+                src="https://open.spotify.com/embed/artist/4LEi4GvB4X1tqnEWCYgN7x?utm_source=generator"
+                width="100%" height="352" frameborder="0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!--  VIDEOS  -->
+  <section id="videos">
+    <div class="container">
+      <h2>Videos</h2>
+      <div class="video-grid">
+        <div class="video-item">
+          <iframe width="100%" height="200" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Music Video" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="video-item">
+          <iframe width="100%" height="200" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Live Performance" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="video-item">
+          <iframe width="100%" height="200" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Lyric Video" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--  ABOUT  -->
+  <section id="about">
+    <div class="container">
+      <h2>About</h2>
+      <div class="bio">
+        <p>Out There Somewhere emerged from the hazy intersection of dreams and reality, crafting ethereal soundscapes that blur the lines between consciousness and cosmic drift.</p>
+        <br>
+        <p>Our music weaves shimmering guitars with submerged melodies, creating a sonic journey through nebulous realms of shoegaze and dream pop. Each song is a star in our constellation, guiding listeners through the vast emptiness and beautiful chaos of existence.</p>
+        <br>
+        <p>Formed in the twilight hours of urban isolation, we channel the whispers of distant galaxies into harmonies that resonate with the souls of stargazers and dreamers alike.</p>
+      </div>
+    </div>
+  </section>
+
+  <!--  GALLERY  -->
+  <section id="gallery">
+    <div class="container">
+      <h2>Gallery</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item" style="background: linear-gradient(135deg, var(--primary-purple), var(--teal));"></div>
+        <div class="gallery-item" style="background: linear-gradient(225deg, var(--deep-purple), var(--soft-teal));"></div>
+        <div class="gallery-item" style="background: linear-gradient(315deg, var(--teal), var(--primary-purple));"></div>
+        <div class="gallery-item" style="background: linear-gradient(45deg, var(--soft-teal), var(--deep-purple));"></div>
+        <div class="gallery-item" style="background: radial-gradient(circle, var(--primary-purple), var(--dark-bg));"></div>
+        <div class="gallery-item" style="background: radial-gradient(ellipse, var(--teal), var(--deep-purple));"></div>
+      </div>
+    </div>
+  </section>
+
+  <!--  CONTACT  -->
+  <section id="contact">
+    <div class="container">
+      <h2>Contact</h2>
+      <p>Get in touch for bookings, collaborations, or just to say hello</p>
+      <div class="social-links">
+        <a href="#" title="Instagram">📷</a>
+        <a href="#" title="Twitter">🐦</a>
+        <a href="#" title="Facebook">📘</a>
+        <a href="#" title="Email">✉️</a>
+        <a href="#" title="Bandcamp">🎵</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // smooth scroll
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // subtle parallax
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const cosmic = document.querySelector('.cosmic-bg');
+      if (cosmic) cosmic.style.transform = `translateY(${scrolled * 0.5}px)`;
+    });
+
+    // fade-in observer
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+
+    document.querySelectorAll('section').forEach(section => {
+      section.style.opacity = '0';
+      section.style.transform = 'translateY(20px)';
+      section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      io.observe(section);
+    });
+  </script>
+
+</body>
+</html>
